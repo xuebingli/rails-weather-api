@@ -47,6 +47,7 @@ end
 
 
 gem "opentelemetry-sdk", "~> 1.4"
+gem "opentelemetry-semantic_conventions", "~> 1.10"
 gem "opentelemetry-instrumentation-rack", "~> 0.24.5"
 gem "opentelemetry-instrumentation-rails", "~> 0.30.2"
 
