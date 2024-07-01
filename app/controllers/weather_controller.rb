@@ -2,7 +2,6 @@ class WeatherController < ApplicationController
   def current
     city = params[:city]
     span = OpenTelemetry::Trace.current_span
-    span.set_attribute('city', city)
     open_weather = OpenWeather.new
     span.add_event('Fetching geo coordinate')
     coordinate = open_weather.geo_coordinate(city)
