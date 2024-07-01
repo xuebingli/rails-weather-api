@@ -1,11 +1,8 @@
 require 'opentelemetry/sdk'
-require 'opentelemetry/instrumentation/rack'
-require 'opentelemetry/instrumentation/rails'
+require 'opentelemetry/instrumentation/all'
+require 'opentelemetry-exporter-otlp'
 
 OpenTelemetry::SDK.configure do |c|
   c.service_name = 'rails-weather-api'
-  c.use 'OpenTelemetry::Instrumentation::Rack'
-  c.use 'OpenTelemetry::Instrumentation::Rails'
+  c.use_all()
 end
-
-Tracer = OpenTelemetry.tracer_provider.tracer('rails-weather-api', '1.0.0')

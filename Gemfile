@@ -48,8 +48,7 @@ end
 
 
 gem "opentelemetry-sdk", "~> 1.4"
-gem "opentelemetry-semantic_conventions", "~> 1.10"
-gem "opentelemetry-instrumentation-rack", "~> 0.24.5"
-gem "opentelemetry-instrumentation-rails", "~> 0.30.2"
+gem "opentelemetry-instrumentation-all", "~> 0.61.0"
+gem "opentelemetry-exporter-otlp", "~> 0.28.0"
 
 gem "httparty", "~> 0.22.0"
