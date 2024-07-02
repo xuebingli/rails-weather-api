@@ -24,7 +24,7 @@ class OpenWeather
     response = self.class.get("/data/2.5/weather", 
       query: { lat:coordinate[:lat], lon: coordinate[:lon], appid: API_KEY, units: 'metric' }
     )
-    return unless response.success?
+    raise ApiError.new(response) unless response.success?
 
     data = response.parsed_response
     {
