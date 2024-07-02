@@ -13,7 +13,7 @@
   - [Recommendations for Improvement](#recommendations-for-improvement)
 
 
-This simple weather API provides an easy-to-use interface for retrieving current weather data for a given city. The integration with OpenTelemetry ensures that the application is well-monitored, providing insights into key performance metrics. The API provides key weather metrics such as temperature, humidity, and wind speed, fetched from the OpenWeatherMap API and cached in memory.
+This weather API offers a user-friendly interface for retrieving current weather data for a specified city. Integration with OpenTelemetry ensures comprehensive monitoring and insights into key performance metrics. The API delivers essential weather metrics, including temperature, humidity, and wind speed. Built as a Rails app in API mode, it fetches data from the OpenWeatherMap API and caches the results in memory for efficiency.
 
 ## API Endpoint
 
