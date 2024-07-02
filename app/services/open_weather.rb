@@ -28,7 +28,6 @@ module OpenWeather
 
     data = response.parsed_response
     {
-      name: data['name'],
       temperature: data['main']['temp'],
       humidity: data['main']['humidity'],
       wind_speed: data['wind']['speed']

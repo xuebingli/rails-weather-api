@@ -43,7 +43,6 @@ RSpec.describe OpenWeather, type: :service do
         .to_return(
           status: 200,
           body: {
-            name: city,
             main: { temp: temperature, humidity: },
             wind: { speed: wind_speed }
           }.to_json,
@@ -51,12 +50,7 @@ RSpec.describe OpenWeather, type: :service do
         )
 
       result = OpenWeather.current_weather(coordinate)
-      expect(result).to eq(
-        name: city,
-        temperature:,
-        humidity:,
-        wind_speed:
-      )
+      expect(result).to eq(temperature:, humidity:, wind_speed: )
     end
 
     it 'raises an error if the response is unsuccessful' do
