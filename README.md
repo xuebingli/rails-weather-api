@@ -78,7 +78,7 @@ OpenTelemetry has been integrated to collect traces from the application. All de
 
 ### Inspection and Visualization
 
-Monitoring can be viewed using a compatible tool, e.g. Jaeger.
+Traces and such can be gathered and viewed using a compatible tool, e.g. Jaeger.
 
 ```bash
 docker run -d --name jaeger \
