@@ -5,6 +5,7 @@
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
+    - [Tests](#tests)
   - [Monitoring](#monitoring)
     - [Inspection and Visualization](#inspection-and-visualization)
     - [A Note on Direct Instrumentation](#a-note-on-direct-instrumentation)
@@ -71,6 +72,14 @@ Update with your OpenWeatherMap API key.
 bin/rails server
 ```
 Access the application at http://localhost:3000/weather/current/Tokyo.
+
+### Tests
+
+To run tests, use the following command:
+
+```bash
+bundle exec rspec
+```
 
 ## Monitoring
 
