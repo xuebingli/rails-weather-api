@@ -108,9 +108,9 @@ As OpenTelemetry's Ruby SDK currently [lacks support for metrics](https://opente
 
 ## Potential Use Cases
 
-- Internal Proxy: Deploy as an internal proxy server within the organization to provide and cache current weather conditions. This setup reduces external API calls and ensures faster response times for internal applications.
-- Weather Dashboard: Integrate the weather API with a dashboard to display current weather conditions for various cities. The dashboard can be customized to show specific weather metrics relevant to the organization.
-- Home Automation: Connect the weather API with home automation systems to dynamically adjust settings such as heating, cooling, and lighting based on current weather conditions.
+- **Internal Proxy**: Deploy as an internal proxy server within the organization to provide and cache current weather conditions. This setup reduces external API calls and ensures faster response times for internal applications.
+- **Weather Dashboard**: Integrate the weather API with a dashboard to display current weather conditions for various cities. The dashboard can be customized to show specific weather metrics relevant to the organization.
+- **Home Automation**: Connect the weather API with home automation systems to dynamically adjust settings such as heating, cooling, and lighting based on current weather conditions.
 
 ## Recommendations for Improvement
 
