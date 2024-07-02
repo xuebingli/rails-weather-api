@@ -16,8 +16,7 @@ RSpec.describe OpenWeather, type: :service do
           body: [{ lat:, lon: }].to_json, 
           headers: { 'Content-Type' => 'application/json' })
 
-      open_weather = OpenWeather.new
-      result = open_weather.geo_coordinate(city)
+      result = OpenWeather.geo_coordinate(city)
       expect(result).to eq(lat:, lon:)
     end
 
@@ -26,8 +25,7 @@ RSpec.describe OpenWeather, type: :service do
         .with(query: { q: city, appid: api_key, limit: 1 })
         .to_return(status: 500)
 
-      open_weather = OpenWeather.new
-      expect { open_weather.geo_coordinate(city) }.to raise_error(ApiError)
+      expect { OpenWeather.geo_coordinate(city) }.to raise_error(OpenWeather::ApiError)
     end
   end
 
@@ -50,8 +48,7 @@ RSpec.describe OpenWeather, type: :service do
           }.to_json, 
           headers: { 'Content-Type' => 'application/json' })
 
-      open_weather = OpenWeather.new
-      result = open_weather.current_weather(coordinate)
+      result = OpenWeather.current_weather(coordinate)
       expect(result).to eq(
         name: city,
         temperature:,
@@ -65,8 +62,7 @@ RSpec.describe OpenWeather, type: :service do
         .with(query: { lat: , lon: , appid: api_key, units: })
         .to_return(status: 500)
 
-      open_weather = OpenWeather.new
-      expect { open_weather.current_weather(coordinate) }.to raise_error(ApiError)
+      expect { OpenWeather.current_weather(coordinate) }.to raise_error(OpenWeather::ApiError)
     end
   end
 end

@@ -1,4 +1,4 @@
-class OpenWeather
+module OpenWeather
   include HTTParty
 
   config = Rails.configuration.open_weather
@@ -8,9 +8,11 @@ class OpenWeather
   base_uri 'api.openweathermap.org'
   default_timeout TIMEOUT_SECONDS
 
-  def geo_coordinate(city)
-    response = self.class.get('/geo/1.0/direct',
-                              query: { q: city, appid: API_KEY, limit: 1 })
+  class ApiError < StandardError; end
+
+  def self.geo_coordinate(city)
+    response = get('/geo/1.0/direct',
+                   query: { q: city, appid: API_KEY, limit: 1 })
     raise ApiError.new(response) unless response.success?
 
     data = response.first
@@ -19,9 +21,9 @@ class OpenWeather
     { lat: data['lat'], lon: data['lon'] }
   end
 
-  def current_weather(coordinate)
-    response = self.class.get('/data/2.5/weather',
-                              query: { lat: coordinate[:lat], lon: coordinate[:lon], appid: API_KEY, units: 'metric' })
+  def self.current_weather(coordinate)
+    response = get('/data/2.5/weather',
+                   query: { lat: coordinate[:lat], lon: coordinate[:lon], appid: API_KEY, units: 'metric' })
     raise ApiError.new(response) unless response.success?
 
     data = response.parsed_response

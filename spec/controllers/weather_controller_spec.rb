@@ -8,10 +8,8 @@ RSpec.describe WeatherController, type: :controller do
       let(:current_weather) { { temperature: 293.25, humidity: 78, wind_speed: 4.1 } }
 
       before do
-        open_weather = instance_double('OpenWeather')
-        allow(OpenWeather).to receive(:new).and_return(open_weather)
-        allow(open_weather).to receive(:geo_coordinate).with(city).and_return(coordinate)
-        allow(open_weather).to receive(:current_weather).with(coordinate).and_return(current_weather)
+        allow(OpenWeather).to receive(:geo_coordinate).with(city).and_return(coordinate)
+        allow(OpenWeather).to receive(:current_weather).with(coordinate).and_return(current_weather)
       end
 
       it 'returns the current weather data' do
@@ -25,9 +23,7 @@ RSpec.describe WeatherController, type: :controller do
       let(:city) { 'Non-existing-city' }
 
       before do
-        open_weather = instance_double('OpenWeather')
-        allow(OpenWeather).to receive(:new).and_return(open_weather)
-        allow(open_weather).to receive(:geo_coordinate).with(city).and_return(nil)
+        allow(OpenWeather).to receive(:geo_coordinate).with(city).and_return(nil)
       end
 
       it 'returns a not found error' do
