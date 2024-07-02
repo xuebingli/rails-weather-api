@@ -83,11 +83,13 @@ bundle exec rspec
 
 ## Monitoring
 
-OpenTelemetry has been integrated to collect traces from the application. All default instrumentation is enabled, and custom traces are implemented to enhance observability.
+OpenTelemetry has been integrated to collect traces from the application. All default instrumentation is enabled, and custom traces are implemented to enhance observability. Traces and such can be gathered and viewed using a compatible tool, e.g. Jaeger.
+
+[A custom span processor](https://github.com/xuebingli/rails-weather-api/blob/c5b9eada1312d4ea7d99497b84541f5a59b5ce58/config/initializers/opentelemetry.rb#L7-L30) ensures that OpenWeather API keys are automatically removed and not sent to the monitoring tool.
 
 ### Inspection and Visualization
 
-Traces and such can be gathered and viewed using a compatible tool, e.g. Jaeger.
+To view and visualize monitoring, run Jaeger with Docker using the following command: 
 
 ```bash
 docker run -d --name jaeger \
