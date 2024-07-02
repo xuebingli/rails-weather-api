@@ -9,19 +9,20 @@ RSpec.describe OpenWeather, type: :service do
 
   describe '#geo_coordinate' do
     it 'returns geo coordinates for a city' do
-      stub_request(:get, "http://api.openweathermap.org/geo/1.0/direct")
+      stub_request(:get, 'http://api.openweathermap.org/geo/1.0/direct')
         .with(query: { q: city, appid: api_key, limit: 1 })
         .to_return(
-          status: 200, 
-          body: [{ lat:, lon: }].to_json, 
-          headers: { 'Content-Type' => 'application/json' })
+          status: 200,
+          body: [{ lat:, lon: }].to_json,
+          headers: { 'Content-Type' => 'application/json' }
+        )
 
       result = OpenWeather.geo_coordinate(city)
       expect(result).to eq(lat:, lon:)
     end
 
     it 'raises an error if the response is unsuccessful' do
-      stub_request(:get, "http://api.openweathermap.org/geo/1.0/direct")
+      stub_request(:get, 'http://api.openweathermap.org/geo/1.0/direct')
         .with(query: { q: city, appid: api_key, limit: 1 })
         .to_return(status: 500)
 
@@ -30,23 +31,24 @@ RSpec.describe OpenWeather, type: :service do
   end
 
   describe '#current_weather' do
-    let(:coordinate) { {lat: , lon: } }
+    let(:coordinate) { { lat:, lon: } }
     let(:temperature) { 25 }
     let(:humidity) { 70 }
     let(:wind_speed) { 5 }
     let(:units) { 'metric' }
 
     it 'returns current weather for given coordinates' do
-      stub_request(:get, "http://api.openweathermap.org/data/2.5/weather")
+      stub_request(:get, 'http://api.openweathermap.org/data/2.5/weather')
         .with(query: { lat:, lon:, appid: api_key, units: })
         .to_return(
-          status: 200, 
+          status: 200,
           body: {
             name: city,
             main: { temp: temperature, humidity: },
-            wind: { speed: wind_speed}
-          }.to_json, 
-          headers: { 'Content-Type' => 'application/json' })
+            wind: { speed: wind_speed }
+          }.to_json,
+          headers: { 'Content-Type' => 'application/json' }
+        )
 
       result = OpenWeather.current_weather(coordinate)
       expect(result).to eq(
@@ -58,8 +60,8 @@ RSpec.describe OpenWeather, type: :service do
     end
 
     it 'raises an error if the response is unsuccessful' do
-      stub_request(:get, "http://api.openweathermap.org/data/2.5/weather")
-        .with(query: { lat: , lon: , appid: api_key, units: })
+      stub_request(:get, 'http://api.openweathermap.org/data/2.5/weather')
+        .with(query: { lat:, lon:, appid: api_key, units: })
         .to_return(status: 500)
 
       expect { OpenWeather.current_weather(coordinate) }.to raise_error(OpenWeather::ApiError)
