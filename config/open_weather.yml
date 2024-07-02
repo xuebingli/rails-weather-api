@@ -1,0 +1,11 @@
+development:
+  api_key: <%= ENV['OPENWEATHER_API_KEY_DEVELOPMENT'] || ENV['OPENWEATHER_API_KEY'] %>
+  timeout_seconds: 5
+
+test:
+  api_key: <%= ENV['OPENWEATHER_API_KEY_TEST'] || ENV['OPENWEATHER_API_KEY'] %>
+  timeout_seconds: 5
+
+production:
+  api_key: <%= ENV['OPENWEATHER_API_KEY_PRODUCTION'] || ENV['OPENWEATHER_API_KEY'] %>
+  timeout_seconds: 10
