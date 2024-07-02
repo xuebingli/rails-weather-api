@@ -18,7 +18,11 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
+end
+
+group :test do
   gem 'rspec-rails'
+  gem 'webmock'
 end
 
 # Integrate OpenTelemetry for monitoring-in-code

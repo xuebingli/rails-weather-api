@@ -3,7 +3,7 @@ development:
   timeout_seconds: 5
 
 test:
-  api_key: <%= ENV['OPENWEATHER_API_KEY_TEST'] || ENV['OPENWEATHER_API_KEY'] %>
+  api_key: test-api-key
   timeout_seconds: 5
 
 production:
