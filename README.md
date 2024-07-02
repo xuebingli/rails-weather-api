@@ -97,6 +97,8 @@ docker run -d --name jaeger \
   jaegertracing/all-in-one:latest
 ```
 
+<img width="2390" alt="Screenshot 2024-07-02 at 4 09 05 PM" src="https://github.com/xuebingli/rails-weather-api/assets/1525352/9e77823c-ec9e-4e93-bbdc-2162f9a7cb43">
+
 ### A Note on Direct Instrumentation
 
 As OpenTelemetry's Ruby SDK currently [lacks support for metrics](https://opentelemetry.io/docs/languages/ruby/instrumentation/#metrics) and [logs](https://opentelemetry.io/docs/languages/ruby/instrumentation/#logs), direct instrumentation of metrics and logs is infeasible. Therefore, a trace-based workaround is recommended. Special care is taken with traces to ensure that key performance indicators, such as rate, errors, and duration, can be *derived* from traces alone. For example, this can be achieved using Service Performance Monitoring provided by Jaeger. 
