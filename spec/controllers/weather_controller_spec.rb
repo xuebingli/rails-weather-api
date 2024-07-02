@@ -6,7 +6,7 @@ RSpec.describe WeatherController, type: :controller do
       let(:city) { 'Tokyo' }
       let(:coordinate) { { lat: 35.6895, lon: 139.6917 } }
       let(:current_weather) { { temperature: 293.25, humidity: 78, wind_speed: 4.1 } }
-    
+
       before do
         open_weather = instance_double('OpenWeather')
         allow(OpenWeather).to receive(:new).and_return(open_weather)
@@ -15,7 +15,7 @@ RSpec.describe WeatherController, type: :controller do
       end
 
       it 'returns the current weather data' do
-        get :current, params: { city: city }
+        get :current, params: { city: }
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)).to eq(current_weather.stringify_keys)
       end
@@ -31,7 +31,7 @@ RSpec.describe WeatherController, type: :controller do
       end
 
       it 'returns a not found error' do
-        get :current, params: { city: city }
+        get :current, params: { city: }
         expect(response).to have_http_status(:not_found)
         expect(JSON.parse(response.body)).to eq({ 'error' => "City #{city} not found" })
       end

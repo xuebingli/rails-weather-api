@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 require 'opentelemetry/sdk'
 require 'opentelemetry/instrumentation/all'
 require 'opentelemetry-exporter-otlp'
 
 class SanitizeApiKeyProcessor < OpenTelemetry::SDK::Trace::SpanProcessor
-  HTTP_TARGET = 'http.target'.freeze
-  NET_PEER_NAME = 'net.peer.name'.freeze
-  API_HOST = 'api.openweathermap.org'.freeze
-  API_KEY_PARAM = 'appid'.freeze
+  HTTP_TARGET = 'http.target'
+  NET_PEER_NAME = 'net.peer.name'
+  API_HOST = 'api.openweathermap.org'
+  API_KEY_PARAM = 'appid'
 
-  def on_start(span, parent_context)
-    return unless span.attributes.has_key?(HTTP_TARGET)
+  def on_start(span, _parent_context)
+    return unless span.attributes.key?(HTTP_TARGET)
     return unless span.attributes[NET_PEER_NAME] == API_HOST
+
     sanitized_url = sanitize_url(span.attributes[HTTP_TARGET])
     span.set_attribute(HTTP_TARGET, sanitized_url)
   end
@@ -28,7 +31,7 @@ end
 
 OpenTelemetry::SDK.configure do |c|
   c.service_name = 'rails-weather-api'
-  c.use_all()
+  c.use_all
 
   # Configure the sanitization processor and the OTLP exporter
   c.add_span_processor(SanitizeApiKeyProcessor.new)
