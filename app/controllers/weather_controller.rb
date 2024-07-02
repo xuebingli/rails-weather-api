@@ -4,7 +4,7 @@ class WeatherController < ApplicationController
     span = OpenTelemetry::Trace.current_span
 
     # Cache current weather for 10 minutes
-    Rails.cache.fetch("weather/current/#{city}", expires_in: 10.minutes) do
+    response = Rails.cache.fetch("weather/current/#{city}", expires_in: 10.minutes) do
       span.add_event('Cache miss for current weather')
 
       # Cache geo coordinate with no expiry
@@ -19,10 +19,11 @@ class WeatherController < ApplicationController
         span.add_event('Fetching current weather')
         current_weather = OpenWeather.current_weather(coordinate)
         span.add_event('Fetched current weather')
-        render json: current_weather
+        { body: current_weather, status: :ok }
       else
-        render json: { error: "City #{city} not found" }, status: :not_found
+        { body: { error: "City #{city} not found" }, status: :not_found }
       end
     end
+    render json: response[:body], status: response[:status]
   end
 end
