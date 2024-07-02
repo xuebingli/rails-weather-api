@@ -12,9 +12,9 @@ class OpenWeather
     response = self.class.get("/geo/1.0/direct", 
       query: { q: city, appid: API_KEY, limit: 1 }
     )
-    return unless response.success?
+    raise ApiError.new(response) unless response.success?
 
-    data = response.parsed_response.first
+    data = response.first
     return unless data
 
     { lat: data['lat'], lon: data['lon'] }
