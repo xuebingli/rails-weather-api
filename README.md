@@ -112,10 +112,13 @@ docker run -d --name jaeger \
 
 ### A Note on Direct Instrumentation
 
-As OpenTelemetry's Ruby SDK currently [lacks support for metrics](https://opentelemetry.io/docs/languages/ruby/instrumentation/#metrics) and [logs](https://opentelemetry.io/docs/languages/ruby/instrumentation/#logs), direct instrumentation of metrics and logs is infeasible. Therefore, a trace-based workaround is recommended. Special care is taken with traces to ensure that key performance indicators, such as rate, errors, and duration, can be *derived* from traces alone. For example, this can be achieved using [Service Performance Monitoring](https://github.com/jaegertracing/jaeger/tree/main/docker-compose/monitor#sending-traces) provided by Jaeger. 
+As OpenTelemetry's Ruby SDK currently [lacks support for metrics](https://opentelemetry.io/docs/languages/ruby/instrumentation/#metrics) and [logs](https://opentelemetry.io/docs/languages/ruby/instrumentation/#logs), direct instrumentation of metrics and logs is infeasible. Therefore, a trace-based workaround is implemented.
+
+For logs, span events serve as a replacement. Span events argublely offer better ergonomics as they are surrounded by the context of a span.
+
+For metrics, special care is taken with traces to ensure that key performance indicators, such as [RED](https://www.splunk.com/en_us/blog/learn/red-monitoring.html) (i.e. rate, errors, and duration), can be *derived* from traces alone. For example, this can be achieved using [Service Performance Monitoring](https://github.com/jaegertracing/jaeger/tree/main/docker-compose/monitor#sending-traces) provided by Jaeger. 
 
 ![screenshot](https://www.jaegertracing.io/img/frontend-ui/spm.png)
-
 
 ## Potential Use Cases
 
